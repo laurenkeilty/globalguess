@@ -31,19 +31,23 @@
 
 .title {
   background-color: #396cca;
-  height: 10vh;
+  padding: 2vh;
+  font-size: 30px;
+  color:white;
   
 }
 
 .footer{
   background-color: #396cca;
-  height: 5vh;
+  padding: 1.5vh;
+  font-size: 14px;
+  color: white;
 }
 
 .interactive {
   background-color: rgb(205, 231, 170);
   margin-left: 50vw;
-  margin-top: -90vh;
+  margin-top: -90.5vh;
   width: 50vw;
   height: 20vh;
 }
@@ -80,3 +84,4 @@
     transform: rotate(360deg);
   }
 }
+
