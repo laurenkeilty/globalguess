@@ -38,38 +38,96 @@ export default function Distance({guess, selectedCountry}) {
 
       let minDistance = Number.MAX_VALUE;
 
-        // Iterate through list of all coordinates finding the smallest possible haversine km distance between the countries borders
-        guessPolygons.forEach(guessPolygon => {
-            selectedPolygons.forEach(selectedPolygon => {
-                guessPolygon.forEach(guessRing => {
+      // Iterate through list of all coordinates finding the smallest possible haversine km distance between the countries borders
+      //four cases, both guess and selected are multipolygons, one is multi and one is a regular polygon or both are regular polygons
+      const guessPolygonType = guessFeature.geometry.type;
+      const selectedCountryPolygonType = selectedCountry.geometry.type;
+
+        //case 1: both polygons
+        if(guessPolygonType == 'Polygon' && selectedCountryPolygonType == 'Polygon') {
+            guessPolygons.forEach(guessPolygon => {
+                selectedPolygons.forEach(selectedPolygon => {
+                    selectedPolygon.forEach(selectedCoords => {
+                        guessPolygon.forEach(guessCoords => {
+                            const distance = calculateHaversineDistance(
+                                guessCoords[1],
+                                guessCoords[0],
+                                selectedCoords[1],
+                                selectedCoords[0]
+                            );
+                            minDistance = Math.min(minDistance, distance);
+                        });
+                    });
+                });
+            });
+        }
+
+        //case 2: guess is polygon, selectedCountry is mulitpolygon
+        else if(guessPolygonType == 'Polygon' && selectedCountryPolygonType == 'MultiPolygon') {
+            guessPolygons.forEach(guessPolygon => {
+                selectedPolygons.forEach(selectedPolygon => {
                     selectedPolygon.forEach(selectedPolygonRing => {
                         selectedPolygonRing.forEach(selectedCoords => {
+                            guessPolygon.forEach(guessCoords => {
+                                const distance = calculateHaversineDistance(
+                                    guessCoords[1],
+                                    guessCoords[0],
+                                    selectedCoords[1],
+                                    selectedCoords[0]
+                                );
+                                minDistance = Math.min(minDistance, distance);
+                            });
+                        });
+                    })
+                });
+            });
+        }
+
+
+        //case 3: guess is mulitpolygon, selectedCountry is polygon
+        else if(guessPolygonType == 'MultiPolygon' && selectedCountryPolygonType == 'Polygon') {
+            guessPolygons.forEach(guessPolygon => {
+                selectedPolygons.forEach(selectedPolygon => {
+                    guessPolygon.forEach(guessRing => {
+                        selectedPolygon.forEach(selectedCoords => {
                             guessRing.forEach(guessCoords => {
-                                if (Array.isArray(selectedCoords)) {
-                                    selectedCoords.forEach(selectedCoord => {
+                                const distance = calculateHaversineDistance(
+                                    guessCoords[1],
+                                    guessCoords[0],
+                                    selectedCoords[1],
+                                    selectedCoords[0]
+                                );
+                                minDistance = Math.min(minDistance, distance);
+                            });
+                        });
+
+                    })
+                });
+            });
+        }
+
+        //case 4: both multipolygons
+        else if(guessPolygonType == 'MultiPolygon' && selectedCountryPolygonType == 'MultiPolygon') {
+            guessPolygons.forEach(guessPolygon => {
+                selectedPolygons.forEach(selectedPolygon => {
+                    guessPolygon.forEach(guessRing => {
+                        selectedPolygon.forEach(selectedPolygonRing => {
+                            selectedPolygonRing.forEach(selectedCoords => {
+                                guessRing.forEach(guessCoords => {
                                         const distance = calculateHaversineDistance(
                                             guessCoords[1],
                                             guessCoords[0],
-                                            selectedCoord[1],
-                                            selectedCoord[0]
+                                            selectedCoords[1],
+                                            selectedCoords[0]
                                         );
                                         minDistance = Math.min(minDistance, distance);
-                                    });
-                                } else {
-                                    const distance = calculateHaversineDistance(
-                                        guessCoords[1],
-                                        guessCoords[0],
-                                        selectedCoords[1],
-                                        selectedCoords[0]
-                                    );
-                                    minDistance = Math.min(minDistance, distance);
-                                }
+                                });
                             });
                         });
                     });
                 });
             });
-        });
+        }
 
     //return the minimum distance
     return minDistance;

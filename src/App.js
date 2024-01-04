@@ -125,6 +125,9 @@ function App() {
 
     //notify user that the game has been reset (REMOVE COUNTRY AFTER DEBUGGING)
     setAlertMessage(`Game reset! \nNumber of players: ${players}. \nSelected country: ${countryName}`);
+
+    //reset country colors to white
+    setResetGame(true);
   };
 
 
@@ -196,7 +199,7 @@ function App() {
           marginTop: '6vh',
           backgroundColor: 'white',
           borderColor: 'white',
-          borderWidth: 4,
+          borderWidth: 7,
           borderRadius: 8,
           width: '80wh',
           color: '#396cca'
@@ -210,7 +213,7 @@ function App() {
           marginTop: '4vh',
           backgroundColor: 'white',
           borderColor: 'white',
-          borderWidth: 4,
+          borderWidth: 7,
           borderRadius: 8,
           width: '100wh',
           color: '#396cca'

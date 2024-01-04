@@ -28,7 +28,7 @@ const LeafletMap = ({guess, selectedCountry, resetMap}) => {
       }
 
       else if((selectedCountry != null) && (name.toLowerCase() == guess.toLowerCase()) &&  (guess.toLowerCase() == selectedCountry.properties.ADMIN.toLowerCase())) {
-        layer.setStyle({ fillColor: "green" });
+        layer.setStyle({ fillColor: "green" , fillOpacity: 1});
         setGuessedCountries(new Map());
       }
 
@@ -37,13 +37,13 @@ const LeafletMap = ({guess, selectedCountry, resetMap}) => {
         let distance = Distance({guess, selectedCountry})
         console.log(distance)
         let color = chooseColor(distance)
-        layer.setStyle({fillColor: color})
+        layer.setStyle({fillColor: color, fillOpacity: 1})
         setGuessedCountries((prevGuessedCountries) => new Map(prevGuessedCountries.set(name, color)));
         console.log(guessedCountries);
       }
 
       else if(guessedCountries.has(name)) {
-        layer.setStyle({fillColor: guessedCountries.get(name)})
+        layer.setStyle({fillColor: guessedCountries.get(name), fillOpacity: 1})
       }
 
       else{
