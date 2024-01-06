@@ -1,21 +1,17 @@
 import React from 'react';
 import countries from './data/countries.json';
 
+//takes in a guess country name and a selected country feature in the countries.json format
 //Returns the distance in km between the two countries calculated via the 
 //haversine formula using the coordinates given in countries.json
 export default function Distance({guess, selectedCountry}) {
-    console.log("the guess", guess.toLowerCase());
-    console.log('the selected', selectedCountry);
 
     //convert countries to an array of values so find can be used
     const countriesArray = countries.features;
-    console.log("The countries array", countriesArray);
 
     //get list of guess country coordinates
     const guessFeature = countriesArray.find(country => country.properties.ADMIN.toLowerCase() == guess.toLowerCase());
-    console.log("The guess feature", guessFeature);
     const guessPolygons = guessFeature ? guessFeature.geometry.coordinates : null;
-    console.log("The guess polygon", guessPolygons);
 
     //get list of selected country coordinates
     const selectedPolygons = selectedCountry ? selectedCountry.geometry.coordinates : null;

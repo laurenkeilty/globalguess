@@ -1,6 +1,8 @@
 import React, {}from 'react';
 import countries from './data/countries.json';
 
+//chooses an rgb color string to return based off the distance given, larger distances give lighter yellow colors
+//which gradient to red as the distances get closer to zero. Distances cannot be negative.
 export default function chooseColor(distance) {
 
     let color;

@@ -24,9 +24,9 @@
 }
 
 .results {
-  background-color: #e7aabb;
+  background-color: #8bb5eb;
   width: 50vw;
-  height: 25vh;
+  height: 25.2vh;
 }
 
 .title {
@@ -34,22 +34,27 @@
   padding: 2vh;
   font-size: 30px;
   color:white;
+  font-family: "Comic Sans MS", "Courier New", monospace;
+  z-index: 1;
   
 }
 
 .footer{
   background-color: #396cca;
-  padding: 1.5vh;
+  padding: 1.2vh;
   font-size: 14px;
   color: white;
+  font-family: "Comic Sans MS", "Courier New", monospace;
+  z-index: 1;
 }
 
 .interactive {
   background-color: rgb(205, 231, 170);
   margin-left: 50vw;
-  margin-top: -90.5vh;
+  margin-top: -90.3vh;
   width: 50vw;
   height: 20vh;
+  font-family: "Comic Sans MS", "Courier New", monospace;
 }
 
 .restart-game-button {
@@ -57,23 +62,46 @@
   margin-left: 50vw;
   margin-top: 0vh;
   width: 25vw;
-  height: 35vh;
+  height: 35.2vh;
+  font-family: "Comic Sans MS", "Courier New", monospace;
+  z-index: 2;
 }
 
 .current-turn-button {
-  background-color: rgb(231, 170, 176);
+  background-color: rgb(3, 134, 129);
   margin-left: 50vw;
   margin-top: 0vh;
   width: 25vw;
   height: 30vh;
+  font-family: "Comic Sans MS", "Courier New", monospace;
 }
 
 .leaderboard {
-  background-color: rgb(231, 201, 170);
+  background-color: rgb(26, 4, 99);
   margin-left: 75vw;
-  margin-top: -65vh;
+  margin-top: -65.2vh;
   width: 25vw;
-  height: 65vh;
+  height: 65.2vh;
+}
+
+.leaderboardTitle {
+  margin-top: 10;
+  font-size: 35; 
+  color: white; 
+  text-align: center;
+  font-family:"Comic Sans MS", "Courier New", monospace;
+}
+
+.leaderboardTable {
+  font-family: "Comic Sans MS", "Courier New", monospace;
+  border: solid;
+  text-align: center;
+  margin-left: 2.5vw;
+  margin-top: 5vh;
+  width: 80%;
+  height: 80%;
+  color: white;
+
 }
 
 @keyframes App-logo-spin {
