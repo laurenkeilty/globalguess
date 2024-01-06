@@ -102,8 +102,8 @@ function App() {
       //reset player to 1
       setCurrentPlayer(1);
 
-      //display for debugging/testing
-      setAlertMessage(`New Game! \nSelected country: ${countryName} \nCurrent Player: ${currentPlayer}.`);
+      //display to user
+      setAlertMessage(`New Game! \nCurrent Player: ${currentPlayer}.`);
 
       //reset country colors to white
       setResetGame(true);
@@ -141,8 +141,8 @@ function App() {
     setCurrentPlayer(1);
     setLeaderboard(Array.from({ length: players }, (_, index) => ({ player: index + 1, wins: 0 })));
 
-    //notify user that the game has been reset (country included for debugging purposes)
-    setAlertMessage(`Game reset! \nNumber of players: ${players}. \nSelected country: ${countryName}`);
+    //notify user that the game has been reset
+    setAlertMessage(`Game reset! \nNumber of players: ${players}.`);
 
     //reset country colors to white
     setResetGame(true);
